@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start Menu.unity
+    guid: 8b043e8d66f5a394eb0ca468e8733428
+  - enabled: 1
+    path: Assets/MoodMeBarracuda/Scenes/Demo.unity
+    guid: 081c7f6b546747e40999f683246dcf28
   m_configObjects: {}
