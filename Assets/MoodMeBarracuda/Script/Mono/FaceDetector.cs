@@ -236,7 +236,7 @@ namespace MoodMe
 
         }
 
-        private void OnGUI()
+        /*private void OnGUI()
         {
 
 
@@ -272,7 +272,8 @@ namespace MoodMe
                                             bigEdge * ratio,
                                             bigEdge * ratio);
 
-                    GUI.Box(rectInst, GUIContent.none, _staticRectStyle);
+                    //I have removed this line to remove the annoying red square from the overlay.
+                    //GUI.Box(rectInst, GUIContent.none, _staticRectStyle);
 
                     //rectInst = new Rect(centerSquareWidth + smallX0,
                     //                                        centerSquareHeight + smallY0,
@@ -286,6 +287,7 @@ namespace MoodMe
 
             }
         }
+        */
 
         void OnDestroy()
         {
