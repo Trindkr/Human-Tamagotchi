@@ -10,8 +10,13 @@ public class ManageScenes : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void exit()
+    public void ExitProgram()
     {
         Application.Quit(); 
+    }
+
+    public void StatisicsScene()
+    {
+        SceneManager.LoadScene(2);
     }
 }
