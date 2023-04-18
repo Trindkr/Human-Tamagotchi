@@ -10,14 +10,13 @@ public class ManageUserStatistics : MonoBehaviour
     public float energy;
     public float fitness;
     public float social;
-    public float comfort; //this relates to the temperature of the environment?
+    public float comfort; //this relates to the temperature of the environment? Heart rate maybe?
 
     //public ManageStatisticBars manageStatisticBars;
 
     void Start()
     {
         LoadUserStats();
-    
     }
 
     void Update()
@@ -65,4 +64,45 @@ public class ManageUserStatistics : MonoBehaviour
             comfort = 100;
         }
     }
+
+    public void manageHunger()
+    {
+        //TODO, how should hunger be decreased?
+        //Increased/resat by pressing button? 
+    }
+
+    public void manageThirst()
+    {
+        //TODO, how should thirst be decreased?
+        //Increased/resat by pressing button? Same button as Hunger? 
+    }
+
+    public void manageEnergy()
+    {
+        //TODO, how should energy be decreased? Decreases slowly over time, but how slow?
+        //Increased/resat by pressing button?
+    }
+
+    public void manageFitness()
+    {
+        //TODO, how should fitness be decreased? Decreases slowly over time, but how slow?
+        //Increased by heart rate sensor, gyroscope, accelerometer, etc?
+    }
+
+    public void manageSocial()
+    {
+        //TODO, how should social be decreased? Decreases slowly over time, but how slow?
+        //Can currently be incresed by having someone show their suprised face. Would be nice if there were more emotions :)
+        //Sensor to register if you've been hugged?
+
+    }
+
+    public void manageComfort()
+    {
+        //TODO, how should comfort be decreased? Decreases slowly over time, but how slow?
+        //Heat sensor, if its too hot or too cold, comfort decreases, if its just right, comfort increases?
+        //Heart rate monitor, if you've got a resting heart rate of 60, comfort increases?
+    }
+
 }
+
