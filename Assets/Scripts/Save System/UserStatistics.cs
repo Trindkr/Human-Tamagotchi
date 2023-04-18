@@ -5,12 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class UserStatistics
 {
-    public int hunger;
-    public int thirst;
-    public int energy;
-    public int fitness;
-    public int social;
-    public int comfort;
+    public float hunger;
+    public float thirst;
+    public float energy;
+    public float fitness;
+    public float social;
+    public float comfort;
 
     public UserStatistics(ManageUserStatistics userStats)
     {

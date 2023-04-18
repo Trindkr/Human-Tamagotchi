@@ -12,38 +12,61 @@ public class ManageStatisticBars : MonoBehaviour
     public Slider socialBar;
     public Slider comfortBar;
 
+    public ManageUserStatistics manageUserStatistics;
 
-    public void setMaxValue(int setMaxValue)
+    public void Start()
     {
-        hungerBar.maxValue = setMaxValue;
-        thirstBar.maxValue = setMaxValue;
-        energyBar.maxValue = setMaxValue;
-        fitnessBar.maxValue = setMaxValue;
-        socialBar.maxValue = setMaxValue;
-        comfortBar.maxValue = setMaxValue;
+        
+        setMaxValue();
+        setHunger(manageUserStatistics.hunger);
+        setThirst(manageUserStatistics.thirst);
+        setEnergy(manageUserStatistics.energy);
+        setFitness(manageUserStatistics.fitness);
+        setSocial(manageUserStatistics.social);
+        setComfort(manageUserStatistics.comfort);
     }
 
-    public void setHunger(int hunger){
+    public void Update()
+    {
+        setHunger(manageUserStatistics.hunger);
+        setThirst(manageUserStatistics.thirst);
+        setEnergy(manageUserStatistics.energy);
+        setFitness(manageUserStatistics.fitness);
+        setSocial(manageUserStatistics.social);
+        setComfort(manageUserStatistics.comfort);
+    }
+
+    public void setMaxValue()
+    {
+        hungerBar.maxValue = 100.0f;
+        thirstBar.maxValue = 100.0f;
+        energyBar.maxValue = 100.0f;
+        fitnessBar.maxValue = 100.0f;
+        socialBar.maxValue = 100.0f;
+        comfortBar.maxValue = 100.0f;
+    }
+
+    public void setHunger(float hunger){
         hungerBar.value = hunger;
     }
 
-    public void setThirst(int thirst){
+    public void setThirst(float thirst){
         thirstBar.value = thirst;
     }
 
-    public void setEnergy(int energy){
+    public void setEnergy(float energy){
         energyBar.value = energy;
     }
 
-    public void setFitness(int fitness){
+    public void setFitness(float fitness){
         fitnessBar.value = fitness;
     }
 
-    public void setSocial(int social){
+    public void setSocial(float social){
         socialBar.value = social;
     }
 
-    public void setComfort(int comfort){
+    public void setComfort(float comfort){
         comfortBar.value = comfort;
     }
 

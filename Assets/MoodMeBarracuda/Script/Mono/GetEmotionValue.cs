@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using MoodMe;
 namespace MoodMe
 {
-    [RequireComponent(typeof(Slider))]
+    //[RequireComponent(typeof(Slider))]
     public class GetEmotionValue : MonoBehaviour
     {
         public enum EmotionEnum
@@ -14,45 +14,30 @@ namespace MoodMe
         }
 
         public EmotionEnum Emotion;
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
+        public ManageUserStatistics userStatistics;
 
         // Update is called once per frame
         void Update()
         {
-            Slider thisSlider = GetComponent<Slider>();
 
-            switch (Emotion)
+            //The values range from 0 to 1
+            if(EmotionsManager.Emotions.neutral > 0.5f)
             {
-                case EmotionEnum.Angry:
-                    thisSlider.value = EmotionsManager.Emotions.angry;
-                    break;
-                case EmotionEnum.Disgust:
-                    thisSlider.value = EmotionsManager.Emotions.disgust;
-                    break;
-                case EmotionEnum.Happy:
-                    thisSlider.value = EmotionsManager.Emotions.happy;
-                    break;
-                case EmotionEnum.Neutral:
-                    thisSlider.value = EmotionsManager.Emotions.neutral;
-                    break;
-                case EmotionEnum.Sad:
-                    thisSlider.value = EmotionsManager.Emotions.sad;
-                    break;
-                case EmotionEnum.Scared:
-                    thisSlider.value = EmotionsManager.Emotions.scared;
-                    break;
-                case EmotionEnum.Surprised:
-                    thisSlider.value = EmotionsManager.Emotions.surprised;
-                    break;
-                case EmotionEnum.EmotionIndex:
-                    thisSlider.value = EmotionsManager.EmotionIndex;
-                    break;
+                Debug.Log("Neutral"); //No change in social value
+                
             }
-
+            else if(EmotionsManager.Emotions.sad > 0.5f)
+            {
+                Debug.Log("Sad");
+                if(userStatistics.social > 0)
+                    userStatistics.social -= 0.1f; //Social is decreased when sad face is detected
+            }
+            else if(EmotionsManager.Emotions.surprised > 0.5f)
+            {
+                Debug.Log("Surprised");
+                if(userStatistics.social < 100)
+                    userStatistics.social += 0.1f; //Social is increased when surprised face is detected
+            }  
 
         }
     }

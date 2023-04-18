@@ -1,29 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ManageUserStatistics : MonoBehaviour
 {
-    public int hunger;
-    public int thirst;
-    public int energy;
-    public int fitness;
-    public int social;
-    public int comfort; //this relates to the temperature of the environment?
+    public float hunger;
+    public float thirst;
+    public float energy;
+    public float fitness;
+    public float social;
+    public float comfort; //this relates to the temperature of the environment?
 
-    public ManageStatisticBars manageStatisticBars;
+    //public ManageStatisticBars manageStatisticBars;
 
     void Start()
     {
         LoadUserStats();
-        manageStatisticBars.setMaxValue(100);
-        manageStatisticBars.setHunger(hunger);
-        manageStatisticBars.setThirst(thirst);
-        manageStatisticBars.setEnergy(energy);
-        manageStatisticBars.setFitness(fitness);
-        manageStatisticBars.setSocial(social);
-        manageStatisticBars.setComfort(comfort);
-
+    
     }
 
     void Update()
@@ -38,14 +32,7 @@ public class ManageUserStatistics : MonoBehaviour
             energy -= 15;
             fitness -= 7;
             social -= 2;
-            comfort -= 6;
-
-            manageStatisticBars.setHunger(hunger);
-            manageStatisticBars.setThirst(thirst);
-            manageStatisticBars.setEnergy(energy);
-            manageStatisticBars.setFitness(fitness);
-            manageStatisticBars.setSocial(social);
-            manageStatisticBars.setComfort(comfort);
+            comfort -= 6;   
             
         }
     }
