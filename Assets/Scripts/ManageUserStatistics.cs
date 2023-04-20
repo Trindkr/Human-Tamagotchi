@@ -102,6 +102,7 @@ public class ManageUserStatistics : MonoBehaviour
         //TODO, how should comfort be decreased? Decreases slowly over time, but how slow?
         //Heat sensor, if its too hot or too cold, comfort decreases, if its just right, comfort increases?
         //Heart rate monitor, if you've got a resting heart rate of 60, comfort increases?
+        //pressure sensor for when you've been given a hug?
     }
 
 }

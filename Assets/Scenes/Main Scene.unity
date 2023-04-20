@@ -3163,7 +3163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4573649585755045325, guid: acd05c4091130fa459afd7cd0d2867e1, type: 3}
       propertyPath: DeviceIndex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4573649585755045325, guid: acd05c4091130fa459afd7cd0d2867e1, type: 3}
       propertyPath: VideoTexure
