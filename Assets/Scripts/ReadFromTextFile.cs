@@ -6,25 +6,60 @@ using System.Linq;
 
 public class ReadFromTextFile : MonoBehaviour
 {
+    private FileSystemWatcher watcher;
+    private string filePath;
+    private string currentContent;
 
-    void Start() 
+    // Start is called before the first frame update
+    void Start()
     {
-        var watch = new FileSystemWatcher();
-        //watch.Path = Application.persistentDataPath;
-        watch.Path = "C:\\Users\\maria\\Desktop\\Unity Projects\\Human-Tamagotchi\\Assets";
-        watch.Filter = "\\test.txt";
-        watch.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite; //more options
-        watch.Changed += new FileSystemEventHandler(OnChanged);
-        watch.EnableRaisingEvents = true;
+        // Set the file path to the desired text file
+        filePath = "C:/Users/maria/Desktop/test.txt";
+       
+
+        // Create a new FileSystemWatcher and set its properties
+        watcher = new FileSystemWatcher();
+        watcher.Path = Path.GetDirectoryName(filePath);
+        watcher.Filter = Path.GetFileName(filePath);
+        watcher.NotifyFilter = NotifyFilters.LastWrite;
+
+        // Add event handlers for the Changed and Error events
+        watcher.Changed += OnChanged;
+        watcher.Error += OnError;
+
+        // Start watching the file
+        watcher.EnableRaisingEvents = true;
+
+        // Read the initial contents of the file
+        currentContent = File.ReadAllText(filePath);
+        Debug.Log("Initial content: " + currentContent);
     }
 
-    /// Functions:
-    static void OnChanged(object source, FileSystemEventArgs e)
+    // Event handler for the Changed event
+    private void OnChanged(object source, FileSystemEventArgs e)
     {
-        if(e.FullPath == "C:\\Users\\maria\\Deskto  p\\Unity Projects\\Human-Tamagotchi\\Assets\\test.txt")
+        // Read the newest entry from the file
+        string newContent = File.ReadLines(filePath).Last();
+
+        // Only update currentContent if the new content is different
+        if (newContent != currentContent)
         {
-            string line1 = File.ReadLines("C:\\Users\\maria\\Desktop\\Unity Projects\\Human-Tamagotchi\\Assets\\test.txt").First();
-            Debug.Log(line1);
+            currentContent = newContent;
+            Debug.Log("New content: " + currentContent);
         }
     }
+
+    // Event handler for the Error event
+    private void OnError(object source, ErrorEventArgs e)
+    {
+        Debug.LogError("FileSystemWatcher error: " + e.GetException().Message);
+    }
+
+    // Stop watching the file when the script is destroyed
+    private void OnDestroy()
+    {
+        watcher.EnableRaisingEvents = false;
+        watcher.Dispose();
+    }
+
 }
