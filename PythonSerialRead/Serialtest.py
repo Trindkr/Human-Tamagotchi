@@ -4,7 +4,7 @@ def write_to_file():
           fp.writelines(cc[2:][:-5]+"\n" )
           fp.close()
           return 0
-ser = serial.Serial("COM10", 115200) #COM Port for reading 
+ser = serial.Serial("COM6", 115200) #COM Port for reading 
 while True:
      cc=str(ser.readline())
      print(cc[2:][:-5])
