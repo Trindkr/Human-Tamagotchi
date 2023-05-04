@@ -21,16 +21,19 @@ namespace MoodMe
         {
 
             //The values range from 0 to 1
-            if(EmotionsManager.Emotions.neutral > 0.5f)
-            {
-                Debug.Log("Neutral"); //No change in social value
-                
-            }
-            else if(EmotionsManager.Emotions.sad > 0.5f)
+            
+            if(EmotionsManager.Emotions.sad > 0.45f)
             {
                 Debug.Log("Sad");
-                if(userStatistics.social > 0)
+                Debug.Log(EmotionsManager.Emotions.sad);
+                if (userStatistics.social > 0)
                     userStatistics.social -= 0.1f; //Social is decreased when sad face is detected
+            }
+            else if (EmotionsManager.Emotions.neutral > 0.5f)
+            {
+                Debug.Log("Neutral"); //No change in social value
+                Debug.Log(EmotionsManager.Emotions.neutral);
+
             }
             else if(EmotionsManager.Emotions.surprised > 0.5f)
             {
