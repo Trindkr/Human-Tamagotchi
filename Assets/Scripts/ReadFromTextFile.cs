@@ -78,7 +78,6 @@ public class ReadFromTextFile : MonoBehaviour
             userStatistics.temperature = float.Parse(inputArray[2]);
         }
         
-        
     }
 
     // Event handler for the Error event
