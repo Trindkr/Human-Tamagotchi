@@ -10,9 +10,16 @@ public class ManageUserStatistics : MonoBehaviour
     public float energy;
     public float fitness;
     public float social;
-    public float comfort; //this relates to the temperature of the environment? Heart rate maybe?
+    public float comfort; 
 
-    //public ManageStatisticBars manageStatisticBars;
+    //Input from nerual network
+    public float suprised;
+
+    //Input from sensors
+    public float heartRate;
+    public float temperature;
+
+    public Animator animator;
 
     void Start()
     {
@@ -23,17 +30,21 @@ public class ManageUserStatistics : MonoBehaviour
     {
         //update the values of the user statistics 
         //TODO
+        decreaseComfort();
+        decreaseEnergy();
+        decreaseFitness();
+        decreaseHunger();
+        decreaseSocial();
+        decreaseThirst();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            hunger -= 10;
-            thirst -= 5;
-            energy -= 15;
-            fitness -= 7;
-            social -= 2;
-            comfort -= 6;   
-            
-        }
+        animator.SetFloat("Hunger", hunger);
+        animator.SetFloat("Thirst", thirst);
+        animator.SetFloat("Energy", energy);
+        animator.SetFloat("Fitness", fitness);
+        animator.SetFloat("Social", social);
+        animator.SetFloat("Comfort", comfort);
+        animator.SetFloat("Suprised", suprised);
+       
     }
     
 
@@ -65,40 +76,67 @@ public class ManageUserStatistics : MonoBehaviour
         }
     }
 
-    public void manageHunger()
+    public void decreaseHunger()
     {
+        if(hunger > 0)
+        {
+            hunger -= .003f;
+        }
+            
         //TODO, how should hunger be decreased?
         //Increased/resat by pressing button? 
     }
 
-    public void manageThirst()
+    public void decreaseThirst()
     {
+        if(thirst > 0)
+        {
+            thirst -= .006f;
+        }
         //TODO, how should thirst be decreased?
         //Increased/resat by pressing button? Same button as Hunger? 
     }
 
-    public void manageEnergy()
+    public void decreaseEnergy()
     {
+        if(energy > 0)
+        {
+            energy -= .002f;
+        }
+        
         //TODO, how should energy be decreased? Decreases slowly over time, but how slow?
         //Increased/resat by pressing button?
     }
 
-    public void manageFitness()
+    public void decreaseFitness()
     {
+        if(fitness > 0)
+        {
+            fitness -= .005f;
+        }
+        
         //TODO, how should fitness be decreased? Decreases slowly over time, but how slow?
         //Increased by heart rate sensor, gyroscope, accelerometer, etc?
     }
 
-    public void manageSocial()
+    public void decreaseSocial()
     {
+        if(social > 0)
+        {
+            social -= .002f;
+        }
         //TODO, how should social be decreased? Decreases slowly over time, but how slow?
         //Can currently be incresed by having someone show their suprised face. Would be nice if there were more emotions :)
         //Sensor to register if you've been hugged?
 
     }
 
-    public void manageComfort()
+    public void decreaseComfort()
     {
+        if(comfort > 0)
+        {
+            comfort -= .001f;
+        }
         //TODO, how should comfort be decreased? Decreases slowly over time, but how slow?
         //Heat sensor, if its too hot or too cold, comfort decreases, if its just right, comfort increases?
         //Heart rate monitor, if you've got a resting heart rate of 60, comfort increases?

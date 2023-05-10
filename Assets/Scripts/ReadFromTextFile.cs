@@ -10,6 +10,8 @@ public class ReadFromTextFile : MonoBehaviour
     private string filePath;
     private string currentContent;
 
+    public ManageUserStatistics userStatistics;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +44,45 @@ public class ReadFromTextFile : MonoBehaviour
         // Read the newest entry from the file
         string newContent = File.ReadLines(filePath).Last();
 
-        // Only update currentContent if the new content is different
-        if (newContent != currentContent)
+        //Split input string into array of strings by commas
+        string[] inputArray = newContent.Split(',');
+
+        switch(inputArray[0])
         {
-            currentContent = newContent;
-            Debug.Log("New content: " + currentContent);
+            //First button resets hunger value
+            case "{Button 1}":
+                userStatistics.hunger = 100f;
+                Debug.Log("Hunger reset");
+                break;
+            //Second button resets thirst value
+            case "{Button 2}":
+                userStatistics.thirst = 100f;
+                Debug.Log("Thirst reset");
+                break;
+            //Third button reset all values
+            case "{Button 3}":
+                userStatistics.fitness = 100f;
+                userStatistics.comfort = 100f;
+                userStatistics.hunger = 100f;
+                userStatistics.thirst = 100f;
+                userStatistics.social = 100f;
+                userStatistics.energy = 100f;
+                Debug.Log("Reset all values");
+                break;
         }
+
+        //If input array has second value, set heart rate to that value
+        if (inputArray.Length > 1)
+        {  
+            userStatistics.heartRate = float.Parse(inputArray[1]);
+        }
+        //If input array has third value, set temperature to that value
+        if (inputArray.Length > 2)
+        {
+            userStatistics.temperature = float.Parse(inputArray[2]);
+        }
+        
+        
     }
 
     // Event handler for the Error event

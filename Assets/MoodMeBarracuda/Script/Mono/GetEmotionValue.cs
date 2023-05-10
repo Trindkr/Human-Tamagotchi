@@ -26,6 +26,7 @@ namespace MoodMe
             {
                 Debug.Log("Sad");
                 Debug.Log(EmotionsManager.Emotions.sad);
+                userStatistics.suprised = 0f;  
                 if (userStatistics.social > 0)
                     userStatistics.social -= 0.1f; //Social is decreased when sad face is detected
             }
@@ -33,14 +34,22 @@ namespace MoodMe
             {
                 Debug.Log("Neutral"); //No change in social value
                 Debug.Log(EmotionsManager.Emotions.neutral);
+                userStatistics.suprised = 0f;  
 
             }
             else if(EmotionsManager.Emotions.surprised > 0.5f)
             {
                 Debug.Log("Surprised");
+                userStatistics.suprised = 100f;
                 if(userStatistics.social < 100)
                     userStatistics.social += 0.1f; //Social is increased when surprised face is detected
-            }  
+                    
+            }
+            else if (EmotionsManager.Emotions.surprised < 0.5f)
+            {
+                userStatistics.suprised = 0f;  
+            }
+           
 
         }
     }
