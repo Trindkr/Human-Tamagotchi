@@ -16,8 +16,8 @@ public class ReadFromTextFile : MonoBehaviour
     void Start()
     {
         // Set the file path to the desired text file
-        //filePath = "C:/Users/maria/Desktop/test.txt";
-        filePath = "C:/Users/JPA99/Documents/GitHub/Human-Tamagotchi/PythonSerialRead/testfile.txt";
+        filePath = "C:/Users/maria/Desktop/test.txt";
+        //filePath = "C:/Users/JPA99/Documents/GitHub/Human-Tamagotchi/PythonSerialRead/testfile.txt";
 
 
         // Create a new FileSystemWatcher and set its properties
@@ -46,29 +46,25 @@ public class ReadFromTextFile : MonoBehaviour
 
         //Split input string into array of strings by commas
         string[] inputArray = newContent.Split(',');
+        string button = inputArray[0];
+        Debug.Log("Input array: " + inputArray[0]);
 
-        switch(inputArray[0])
+        if(button.Equals("{Button 1}"))
         {
-            //First button resets hunger value
-            case "{Button 1}":
-                userStatistics.hunger = 100f;
-                Debug.Log("Hunger reset");
-                break;
-            //Second button resets thirst value
-            case "{Button 2}":
-                userStatistics.thirst = 100f;
-                Debug.Log("Thirst reset");
-                break;
-            //Third button reset all values
-            case "{Button 3}":
-                userStatistics.fitness = 100f;
-                userStatistics.comfort = 100f;
-                userStatistics.hunger = 100f;
-                userStatistics.thirst = 100f;
-                userStatistics.social = 100f;
-                userStatistics.energy = 100f;
-                Debug.Log("Reset all values");
-                break;
+            userStatistics.hunger = 100f;
+        }
+        if(button.Equals("{Button 2}"))
+        {
+            userStatistics.thirst = 100f;
+        }
+        if(button.Equals("{Button 3}"))
+        {
+            userStatistics.fitness = 100f;
+            userStatistics.comfort = 100f;
+            userStatistics.hunger = 100f;
+            userStatistics.thirst = 100f;
+            userStatistics.social = 100f;
+            userStatistics.energy = 100f;
         }
 
         //If input array has second value, set heart rate to that value
