@@ -10,6 +10,8 @@ public class ReadFromTextFile : MonoBehaviour
     private string filePath;
     private string currentContent;
 
+    public ManageUserStatistics userStatistics;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,27 @@ public class ReadFromTextFile : MonoBehaviour
         // Read the newest entry from the file
         string newContent = File.ReadLines(filePath).Last();
 
-        // Only update currentContent if the new content is different
-        if (newContent != currentContent)
+        //Split input string into array of strings by commas
+        string[] inputArray = newContent.Split(',');
+
+        switch(inputArray[0])
         {
-            currentContent = newContent;
-            Debug.Log("New content: " + currentContent);
+            //First button resets hunger value
+            case "{Button 1}":
+                userStatistics.hunger = 100f;
+                Debug.Log("Hunger reset");
+                break;
+            //Second button resets thirst value
+            case "{Button 2}":
+                userStatistics.thirst = 100f;
+                Debug.Log("Thirst reset");
+                break;
+            //Third button fitness and comfort values, CHANGE THIS WHEN ALL SENSORS ARE WORKING
+            case "{Button 3}":
+                userStatistics.fitness = 100f;
+                userStatistics.comfort = 100f;
+                Debug.Log("Fitness and comfort reset");
+                break;
         }
     }
 

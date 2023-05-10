@@ -11,7 +11,14 @@ public class ManageUserStatistics : MonoBehaviour
     public float fitness;
     public float social;
     public float comfort; 
+
+    //Input from nerual network
     public float suprised;
+
+    //Input from sensors
+    public float heartRate;
+    public float temperature;
+
 
     public Animator animator;
 
