@@ -49,15 +49,15 @@ public class ReadFromTextFile : MonoBehaviour
         string button = inputArray[0];
         Debug.Log("Input array: " + inputArray[0]);
 
-        if(button.Equals("{Button 1}"))
+        if(button.Equals("Button_1"))
         {
             userStatistics.hunger = 100f;
         }
-        if(button.Equals("{Button 2}"))
+        if(button.Equals("Button_2"))
         {
             userStatistics.thirst = 100f;
         }
-        if(button.Equals("{Button 3}"))
+        if(button.Equals("Button_3"))
         {
             userStatistics.fitness = 100f;
             userStatistics.comfort = 100f;
