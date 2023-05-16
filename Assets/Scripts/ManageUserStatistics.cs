@@ -80,7 +80,7 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(hunger > 0)
         {
-            hunger -= .003f;
+            hunger -= .0006f;
         }
             
         //TODO, how should hunger be decreased?
@@ -91,7 +91,7 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(thirst > 0)
         {
-            thirst -= .006f;
+            thirst -= .0008f;
         }
         //TODO, how should thirst be decreased?
         //Increased/resat by pressing button? Same button as Hunger? 
@@ -101,7 +101,7 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(energy > 0)
         {
-            energy -= .002f;
+            energy -= .0002f;
         }
         
         //TODO, how should energy be decreased? Decreases slowly over time, but how slow?
@@ -112,7 +112,7 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(fitness > 0)
         {
-            fitness -= .005f;
+            fitness -= .0005f;
         }
         
         //TODO, how should fitness be decreased? Decreases slowly over time, but how slow?
@@ -123,7 +123,7 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(social > 0)
         {
-            social -= .002f;
+            social -= .0006f;
         }
         //TODO, how should social be decreased? Decreases slowly over time, but how slow?
         //Can currently be incresed by having someone show their suprised face. Would be nice if there were more emotions :)
@@ -135,7 +135,7 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(comfort > 0)
         {
-            comfort -= .001f;
+            comfort -= .0005f;
         }
         //TODO, how should comfort be decreased? Decreases slowly over time, but how slow?
         //Heat sensor, if its too hot or too cold, comfort decreases, if its just right, comfort increases?

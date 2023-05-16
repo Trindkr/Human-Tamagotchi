@@ -16,8 +16,8 @@ public class ReadFromTextFile : MonoBehaviour
     void Start()
     {
         // Set the file path to the desired text file
-        filePath = "C:/Users/maria/Desktop/test.txt";
-        //filePath = "C:/Users/JPA99/Documents/GitHub/Human-Tamagotchi/PythonSerialRead/testfile.txt";
+        //filePath = "C:/Users/maria/Desktop/test.txt";
+        filePath = "C:/Users/JPA99/Documents/GitHub/Human-Tamagotchi/PythonSerialRead/testfile.txt";
 
 
         // Create a new FileSystemWatcher and set its properties
@@ -67,15 +67,15 @@ public class ReadFromTextFile : MonoBehaviour
             userStatistics.energy = 100f;
         }
 
-        //If input array has second value, set heart rate to that value
+        //If input array has second value, set temperature to that value
         if (inputArray.Length > 1)
         {  
-            userStatistics.heartRate = float.Parse(inputArray[1]);
+            userStatistics.temperature = float.Parse(inputArray[1]);
         }
-        //If input array has third value, set temperature to that value
+        //If input array has third value, set heart rate to that value
         if (inputArray.Length > 2)
         {
-            userStatistics.temperature = float.Parse(inputArray[2]);
+            userStatistics.heartRate = float.Parse(inputArray[2]);
         }
         
     }
