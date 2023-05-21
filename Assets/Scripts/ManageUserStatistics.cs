@@ -16,8 +16,11 @@ public class ManageUserStatistics : MonoBehaviour
     public float suprised;
 
     //Input from sensors
-    public float heartRate;
+    public float accelerationMagnitude;
+    public float gyroMagnitude;
     public float temperature;
+ 
+    public float activityThreshold = 1.0f;
 
     public Animator animator;
 
@@ -101,7 +104,15 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(energy > 0)
         {
-            energy -= .0002f;
+            if(accelerationMagnitude > activityThreshold || gyroMagnitude > activityThreshold)
+            {
+                energy -= .0005f;
+            }
+            else 
+            {
+                energy -= .0002f;
+            }
+           
         }
         
         //TODO, how should energy be decreased? Decreases slowly over time, but how slow?
@@ -112,7 +123,16 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(fitness > 0)
         {
-            fitness -= .0005f;
+            if(accelerationMagnitude > activityThreshold || gyroMagnitude > activityThreshold)
+            {
+                fitness += .005f;
+            }
+            else 
+            {
+                fitness -= .0005f;
+            }
+
+            
         }
         
         //TODO, how should fitness be decreased? Decreases slowly over time, but how slow?
@@ -133,9 +153,17 @@ public class ManageUserStatistics : MonoBehaviour
 
     public void decreaseComfort()
     {
-        if(comfort > 0)
+        if(comfort > 0 && comfort < 100)
         {
-            comfort -= .0005f;
+            if(temperature > 30 || temperature < 15)
+            {
+                comfort -= .005f;
+            }
+            else 
+            {
+                comfort += .0005f;
+            }
+            
         }
         //TODO, how should comfort be decreased? Decreases slowly over time, but how slow?
         //Heat sensor, if its too hot or too cold, comfort decreases, if its just right, comfort increases?

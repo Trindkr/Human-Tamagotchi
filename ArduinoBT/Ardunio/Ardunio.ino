@@ -1,4 +1,7 @@
 #include <BluetoothSerial.h>
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <Wire.h>
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 // #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
@@ -10,11 +13,7 @@ int buttonstate_3 = 0;
 // int PulseSensorPurplePin = 13;
 String data;
 String tempature;
-int ThermistorPin = 4;
-int Vo;
-float R1 = 10000;
-float logR2, R2, T;
-float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;
+Adafruit_MPU6050 mpu;
 void setup()
 {
   pinMode(15, INPUT_PULLUP);
@@ -23,12 +22,22 @@ void setup()
   Serial.begin(115200);
   SerialBT.begin("ESP32test"); // Bluetooth device name
   Serial.println("The device started, now you can pair it with bluetooth!");
+  if (!mpu.begin())
+  {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1)
+    {
+      delay(10);
+    }
+    mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
+    mpu.setGyroRange(MPU6050_RANGE_500_DEG);
+    mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
+  }
 }
-
 void loop()
 {
-  button();
   data = "";
+  button();
   if (Serial.available())
   {
     SerialBT.write(Serial.read());
@@ -37,8 +46,27 @@ void loop()
   {
     Serial.write(SerialBT.read());
   }
-  delay(200);
-  void Temp();
+  sensors_event_t a, g, temp;
+  mpu.getEvent(&a, &g, &temp);
+  data = "";
+  data += "Sensor";
+  data += ", ";
+  data += a.acceleration.x;
+  data += ", ";
+  data += a.acceleration.y;
+  data += ", ";
+  data += a.acceleration.z;
+  data += ", ";
+  data += g.gyro.x;
+  data += ", ";
+  data += g.gyro.y;
+  data += ", ";
+  data += g.gyro.z;
+  data += ", ";
+  data += temp.temperature;
+  SerialBT.println(data);
+  // Serial.print(data);
+  delay(2000);
 }
 void button()
 {
@@ -47,39 +75,29 @@ void button()
   buttonstate_3 = digitalRead(15);
   if (buttonstate_3 == LOW)
   {
+    data = "";
     data += "Button_3";
     data += ", ";
-    data += String(T);
     SerialBT.println(data);
     Serial.print(data);
+    delay(2000);
   }
   if (buttonstate_2 == LOW)
   {
+    data = "";
     data += "Button_2";
     data += ", ";
-    data += String(T);
     SerialBT.println(data);
     Serial.print(data);
+    delay(2000);
   }
   if (buttonstate_1 == LOW)
   {
+    data = "";
     data += "Button_1";
     data += ", ";
-    data += String(T);
     SerialBT.println(data);
     Serial.print(data);
+    delay(2000);
   }
-  else
-  {
-  }
-  delay(1000);
-}
-
-void Temp()
-{
-  Vo = analogRead(ThermistorPin);
-  R2 = R1 * (1023.0 / (float)Vo - 1.0);
-  logR2 = log(R2);
-  T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
-  T = T - 273.15;
 }

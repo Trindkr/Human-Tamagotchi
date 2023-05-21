@@ -10,6 +10,7 @@ public class ReadFromTextFile : MonoBehaviour
     private string filePath;
     private string currentContent;
 
+
     public ManageUserStatistics userStatistics;
 
     // Start is called before the first frame update
@@ -46,7 +47,7 @@ public class ReadFromTextFile : MonoBehaviour
 
         //Split input string into array of strings by commas
         string[] inputArray = newContent.Split(',');
-        string button = inputArray[0];
+        string input = inputArray[0];
         Debug.Log("Input array: " + inputArray[0]);
 
         if(button.Equals("Button_1"))
@@ -58,26 +59,39 @@ public class ReadFromTextFile : MonoBehaviour
             userStatistics.thirst = 100f;
         }
         if(button.Equals("Button_3"))
+        if(input.Equals("Button_1"))
         {
-            userStatistics.fitness = 100f;
-            userStatistics.comfort = 100f;
             userStatistics.hunger = 100f;
+        }
+        if(input.Equals("Button_2"))
+        {
             userStatistics.thirst = 100f;
-            userStatistics.social = 100f;
+        }
+        if(input.Equals("Button_3"))
+        {
             userStatistics.energy = 100f;
         }
-
-        //If input array has second value, set temperature to that value
-        if (inputArray.Length > 1)
-        {  
-            userStatistics.temperature = float.Parse(inputArray[1]);
-        }
-        //If input array has third value, set heart rate to that value
-        if (inputArray.Length > 2)
+        if(input.Equals("Sensor"))
         {
-            userStatistics.heartRate = float.Parse(inputArray[2]);
+            float accelerationX = float.Parse(inputArray[1]);
+            float accelerationY = float.Parse(inputArray[2]);
+            float accelerationZ = float.Parse(inputArray[3]);
+
+            float gyroX = float.Parse(inputArray[4]);
+            float gyroY = float.Parse(inputArray[5]);
+            float gyroZ = float.Parse(inputArray[6]);
+
+            userStatistics.accelerationMagnitude = Mathf.Sqrt(accelerationX * accelerationX + accelerationY * accelerationY + accelerationZ * accelerationZ);
+            userStatistics.gyroMagnitude = Mathf.Sqrt(gyroX * gyroX + gyroY * gyroY + gyroZ * gyroZ);
+            userStatistics.temperature = float.Parse(inputArray[7]);
+
+            Debug.Log("Acceleration: " + userStatistics.accelerationMagnitude);
+            Debug.Log("Gyro: " + userStatistics.gyroMagnitude);
+            Debug.Log("Temperature: " + userStatistics.temperature);
+
+
         }
-        
+
     }
 
     // Event handler for the Error event

@@ -5,6 +5,71 @@ using UnityEngine;
 public class FillOrEmptyNeeds : MonoBehaviour
 {
     public ManageUserStatistics userStatistics;
+
+    public AdminMode adminMode;
+    
+
+    public GameObject hungerFill;
+    public GameObject hungerEmpty;
+
+    public GameObject thirstFill;
+    public GameObject thirstEmpty;
+
+    public GameObject energyFill;
+    public GameObject energyEmpty;
+
+    public GameObject fitnessFill;
+    public GameObject fitnessEmpty;
+
+    public GameObject socialFill;
+    public GameObject socialEmpty;
+
+    public GameObject comfortFill;
+    public GameObject comfortEmpty;
+
+    void Start()
+    {
+       manageFillAndEmptyButtons();
+    }
+
+    public void manageFillAndEmptyButtons()
+    {
+        if (adminMode.adminMode == true)
+        {
+            hungerFill.SetActive(true);
+            hungerEmpty.SetActive(true);
+            thirstFill.SetActive(true);
+            thirstEmpty.SetActive(true);
+            energyFill.SetActive(true);
+            energyEmpty.SetActive(true);
+            fitnessFill.SetActive(true);
+            fitnessEmpty.SetActive(true);
+            socialFill.SetActive(true);
+            socialEmpty.SetActive(true);
+            comfortFill.SetActive(true);
+            comfortEmpty.SetActive(true);
+        }
+        else
+        {
+            hungerFill.SetActive(false);
+            hungerEmpty.SetActive(false);
+            thirstFill.SetActive(false);
+            thirstEmpty.SetActive(false);
+            energyFill.SetActive(false);
+            energyEmpty.SetActive(false);
+            fitnessFill.SetActive(false);
+            fitnessEmpty.SetActive(false);
+            socialFill.SetActive(false);
+            socialEmpty.SetActive(false);
+            comfortFill.SetActive(false);
+            comfortEmpty.SetActive(false);
+        }
+    }
+
+    void OnEnable()
+    {
+        manageFillAndEmptyButtons();
+    }
     
     public void FillHunger()
     {
