@@ -109,7 +109,7 @@ public class ManageUserStatistics : MonoBehaviour
             }
             else 
             {
-                energy -= .0005f;
+                energy -= .02f;
             }
            
         }
@@ -125,7 +125,7 @@ public class ManageUserStatistics : MonoBehaviour
             if(accelerationMagnitude > 1040 && accelerationMagnitude < 1070)
             {
                  if(fitness > 0){
-                     fitness -= .0005f;
+                     fitness -= .005f;
                  }
                
             }
@@ -133,7 +133,7 @@ public class ManageUserStatistics : MonoBehaviour
             {
                 if(fitness < 100)
                 {
-                    fitness += .005f;
+                    fitness += .05f;
                 }
                 
             }
@@ -159,18 +159,25 @@ public class ManageUserStatistics : MonoBehaviour
 
     public void decreaseComfort()
     {
-        if(comfort > 0 && comfort < 100)
-        {
-            if(temperature > 30 || temperature < 15)
+        
+            if(temperature > 3000 || temperature < 1500)
             {
-                comfort -= .005f;
+                if(comfort > 0)
+                {
+
+                    comfort -= .01f;
+                }
             }
             else 
             {
-                comfort += .0005f;
+                if(comfort < 100)
+                {
+                    comfort += .02f;
+
+                }
             }
             
-        }
+        
         //TODO, how should comfort be decreased? Decreases slowly over time, but how slow?
         //Heat sensor, if its too hot or too cold, comfort decreases, if its just right, comfort increases?
         //Heart rate monitor, if you've got a resting heart rate of 60, comfort increases?
