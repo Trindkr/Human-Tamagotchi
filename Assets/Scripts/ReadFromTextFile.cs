@@ -18,7 +18,8 @@ public class ReadFromTextFile : MonoBehaviour
     {
         // Set the file path to the desired text file
         //filePath = "C:/Users/maria/Desktop/test.txt";
-        filePath = "C:/Users/JPA99/Documents/GitHub/Human-Tamagotchi/PythonSerialRead/testfile.txt";
+        filePath = "C:/Users/Bruger/Desktop/DDP/GIT/Human-Tamagotchi/PythonSerialRead/testfile.txt";
+        // filePath = "C:/Users/JPA99/Documents/GitHub/Human-Tamagotchi/PythonSerialRead/testfile.txt";
 
 
         // Create a new FileSystemWatcher and set its properties

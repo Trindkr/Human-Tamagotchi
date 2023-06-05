@@ -15,7 +15,7 @@ def write_to_file():
                print(cc[2])
                fp.close()
                return print(cc[2:][:-5])
-ser = serial.Serial("COM6", 115200) #COM Port for reading 
+ser = serial.Serial("COM5", 115200) #COM Port for reading 
 while True:
      cc=str(ser.readline())
      write_to_file()

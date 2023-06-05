@@ -20,7 +20,6 @@ public class ManageUserStatistics : MonoBehaviour
     public float gyroMagnitude;
     public float temperature;
  
-    public float activityThreshold = 1.0f;
 
     public Animator animator;
 
@@ -104,13 +103,13 @@ public class ManageUserStatistics : MonoBehaviour
     {
         if(energy > 0)
         {
-            if(accelerationMagnitude > activityThreshold || gyroMagnitude > activityThreshold)
+            if(accelerationMagnitude > 1040 && accelerationMagnitude < 1070)
             {
-                energy -= .0005f;
+                energy -= .0002f;
             }
             else 
             {
-                energy -= .0002f;
+                energy -= .0005f;
             }
            
         }
@@ -121,19 +120,26 @@ public class ManageUserStatistics : MonoBehaviour
 
     public void decreaseFitness()
     {
-        if(fitness > 0)
-        {
-            if(accelerationMagnitude > activityThreshold || gyroMagnitude > activityThreshold)
+       
+        
+            if(accelerationMagnitude > 1040 && accelerationMagnitude < 1070)
             {
-                fitness += .005f;
+                 if(fitness > 0){
+                     fitness -= .0005f;
+                 }
+               
             }
             else 
             {
-                fitness -= .0005f;
+                if(fitness < 100)
+                {
+                    fitness += .005f;
+                }
+                
             }
 
             
-        }
+        
         
         //TODO, how should fitness be decreased? Decreases slowly over time, but how slow?
         //Increased by heart rate sensor, gyroscope, accelerometer, etc?
